@@ -5,23 +5,22 @@ import openai
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Set the app title
-st.title("🩺 Health Symptom Checker")
+st.title("📊 Master Data Management Assistant")
 
-# Initialize chat history with a health-focused system prompt
+# Initialize chat history with a MDM-focused system prompt
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {
             "role": "system",
             "content": (
-                "You are a professional AI assistant specialized in health and symptom checking. "
-                "Your role is to help users understand their symptoms and suggest possible common causes "
-                "based on the information they provide. You must clearly state that you are not a doctor, "
-                "and you do not provide medical diagnoses or emergency advice. "
-                "If a user asks about anything unrelated to health or symptoms, reply: "
-                "'I'm here to help with health-related questions and symptom checking. "
-                "Please ask about symptoms, conditions, or health concerns.' "
-                "If a user describes emergency symptoms like chest pain, difficulty breathing, or sudden confusion, respond: "
-                "'These symptoms may indicate a medical emergency. Please seek immediate medical attention or call emergency services.'"
+                "You are an expert AI assistant specialized in Master Data Management (MDM). "
+                "You assist users with questions related to MDM concepts, tools, best practices, governance, "
+                "data domains, implementation strategies, and enterprise use cases. "
+                "You must only answer queries related to Master Data Management. "
+                "If the user asks something unrelated to MDM, reply with: "
+                "'I'm here to assist only with Master Data Management-related questions. "
+                "Please ask about MDM concepts, tools, data governance, or implementation.' "
+                "If a question is ambiguous or unclear, ask the user to clarify in the context of MDM."
             )
         }
     ]
@@ -32,7 +31,7 @@ for msg in st.session_state.messages[1:]:  # Skip system prompt in UI
         st.markdown(msg["content"])
 
 # User input
-user_input = st.chat_input("Describe your symptoms...")
+user_input = st.chat_input("Ask anything about Master Data Management...")
 
 # Function to get AI response
 def get_response(messages):
@@ -60,7 +59,6 @@ if user_input:
 # Optional: Add footer disclaimer
 st.markdown("---")
 st.markdown(
-    "🛑 **Disclaimer:** This chatbot does not provide medical advice, diagnosis, or treatment. "
-    "Always consult a qualified healthcare provider for medical concerns.",
+    "ℹ️ **Note:** This assistant is focused only on Master Data Management (MDM). For other topics, please consult the appropriate resources.",
     unsafe_allow_html=True
 )
